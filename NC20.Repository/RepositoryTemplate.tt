@@ -1,0 +1,24 @@
+﻿<#@ template language="C#" debug="true" hostspecific="true"#>
+<#@ include file="Config.config"#>using NC20.Entities;
+namespace NC20.Repository
+{
+<#
+foreach(var entity in entities){
+#>
+    public partial class <#=entity.Name#>Repository : BaseRepository<<#=entity.Name#>, NC20Entities>, I<#=entity.Name#>Repository
+    {
+        public <#=entity.Name#>Repository(IBaseUnitOfWork<NC20Entities> unitOfWork)
+            : base(unitOfWork)
+        {
+
+        }
+		<# if(!entity.IsOverrideKeyMethod) {#>protected override int GetKeyId(<#=entity.Name#> model)
+        {
+            return model.<#=entity.IdKey#>;
+        }
+<#}#>
+	}
+<# 
+  }
+#>
+}

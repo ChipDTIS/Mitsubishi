@@ -1,0 +1,6 @@
+﻿@model List<HeaderCarModel>
+
+@foreach (var car in Model)
+{
+    <li><a href="../san-pham/@car.Id" title="Mirage">@car.Title</a></li>
+}

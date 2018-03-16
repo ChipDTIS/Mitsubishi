@@ -1,0 +1,18 @@
+﻿@model List<HeaderCarModel>
+
+@foreach (var car in Model)
+{
+    <li class="menu-item">
+        <a href="../san-pham/@car.Id"
+           title="@car.Title" class="menu-link-sp">
+            <div class="img">
+                <img src="@car.Image.Url"
+                     alt="@car.Title" />
+            </div>
+            <div class="text">
+                <span class="menu-title">@car.Title</span>
+                <span class="menu-price">@car.Price</span>
+            </div>
+        </a>
+    </li>
+}

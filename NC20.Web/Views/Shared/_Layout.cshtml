@@ -1,0 +1,589 @@
+﻿@{ 
+    var seoKeywords = ViewBag.SEO != null ? ((ViewBag.SEO as SEOKeywordsModel) ?? new SEOKeywordsModel()) : new SEOKeywordsModel();
+    try
+    {
+        if (string.IsNullOrEmpty(seoKeywords.Author)
+            || string.IsNullOrEmpty(seoKeywords.Description)
+            || string.IsNullOrEmpty(seoKeywords.Keywords)
+            || string.IsNullOrEmpty(seoKeywords.SharedImageUrl)
+            || string.IsNullOrEmpty(seoKeywords.Title)
+            )
+        {
+            // var entity = Repository.HomepageContentRepository.GetAll().Include(x => x.CoverImage).OrderBy(x => x.Id).FirstOrDefault();
+            // if (entity != null)
+            {
+                seoKeywords.Author = "";
+                seoKeywords.Description = "";
+                seoKeywords.Keywords = "";
+                seoKeywords.SharedImageUrl = "";
+                seoKeywords.Title = "";
+                seoKeywords.StructuredData = "";
+            }
+        }
+    }
+    catch (Exception)
+    {
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@(seoKeywords?.Title ?? "Mitsubishi Đà Nẵng")</title>
+
+    <meta name="description" content="@(seoKeywords?.Description ?? "Mitsubishi Đà Nẵng")">
+
+    <meta name="keywords" content="@(seoKeywords?.Keywords ?? "mitshubishi đà nẵng, mitsubishi da nang, mitsubishi")">
+
+    <meta name="author" content="@(seoKeywords?.Author ?? "Mitsubishi Đà Nẵng")">
+
+    <!-- Facebook META -->
+    <meta property="fb:app_id" content="APP_ID">
+    <meta property="og:site_name" content="@(seoKeywords?.Author ?? "Mitsubishi Đà Nẵng")">
+    <meta property="og:title" content="@(seoKeywords?.Title ?? "Mitsubishi Đà Nẵng")">
+    <meta property="og:description" content="@(seoKeywords?.Description ?? "Mitsubishi Đà Nẵng")">
+    <meta property="og:url" content="https://www.dfwnewhomes.com/">
+    <meta property="og:image" content="@(seoKeywords?.SharedImageUrl ?? "https://s3-ap-southeast-1.amazonaws.com/dfwresource/home/img/home_e621e11d-b91d-47b1-893f-2e84bc0822f9.png")">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter META -->
+    <meta name="twitter:title" content="@(seoKeywords?.Title ?? "Mitsubishi Đà Nẵng")">
+    <meta name="twitter:description" content="@(seoKeywords?.Description ?? "Mitsubishi Đà Nẵng")">
+    <meta name="twitter:url" content="https://www.dfwnewhomes.com/">
+    <meta name="twitter:image" content="@(seoKeywords?.SharedImageUrl ?? "https://s3-ap-southeast-1.amazonaws.com/dfwresource/home/img/home_e621e11d-b91d-47b1-893f-2e84bc0822f9.png")">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=vietnamese" rel="stylesheet">
+
+    <link href="~/css/libs.css" rel="stylesheet">
+    <link href="~/css/libs/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+    <link href="~/css/wysiwyg.css" rel="stylesheet">
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/css/styles-plus.css" rel="stylesheet" />
+    <link href="~/css/rte.css" rel="stylesheet" />
+    <link href="~/css/styles.css" rel="stylesheet">
+    <link href="~/css/toastr.min.css" rel="stylesheet">
+    <link href="~/css/responsive.css" rel="stylesheet">
+
+    <script src="~/js/jquery.js"></script>
+    <script src="~/js/angular.min.js"></script>
+    <script src="~/js/toastr.min.js"></script>
+    @*<environment include="Development">
+            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+            <link rel="stylesheet" href="~/css/site.css" />
+        </environment>
+        <environment exclude="Development">
+            <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+                  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+                  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+            <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        </environment>*@
+</head>
+<body>
+    <header id="header" class="header">
+        <div class="main-logo">
+            <a href="/" title="Mitsubishi Motors Việt Nam">
+                <img src="~/images/main-logo.svg" alt="Mitsubishi Motors Việt Nam" class="logo" />
+            </a>
+        </div>
+        <!-- Menu on top header: Top menu - Search - Language - Social-->
+        <div class="top-header">
+            <div class="header-inner clearfix" data-item="[
+  {
+    &quot;caption&quot;: &quot;Bảng giá&quot;,
+    &quot;link&quot;: &quot;/bang-gia/&quot;,
+    &quot;newWindow&quot;: false,
+    &quot;internal&quot;: 1240,
+    &quot;edit&quot;: false,
+    &quot;isInternal&quot;: true,
+    &quot;internalName&quot;: &quot;Bảng giá&quot;,
+    &quot;type&quot;: &quot;internal&quot;,
+    &quot;title&quot;: &quot;Bảng giá&quot;
+  },
+  {
+    &quot;caption&quot;: &quot;Đăng ký lái thử&quot;,
+    &quot;link&quot;: &quot;/dang-ky-lai-thu/&quot;,
+    &quot;newWindow&quot;: false,
+    &quot;internal&quot;: 1487,
+    &quot;edit&quot;: false,
+    &quot;isInternal&quot;: true,
+    &quot;internalName&quot;: &quot;Đăng ký lái thử&quot;,
+    &quot;type&quot;: &quot;internal&quot;,
+    &quot;title&quot;: &quot;Đăng ký lái thử&quot;
+  }
+]" data-item-type="Newtonsoft.Json.Linq.JArray">
+                <ul class="hidden-xs nav-list">
+                    <li>
+                        <a href="../bang-gia/index.html"
+                           title="Bảng giá">Bảng giá</a>
+                    </li>
+                    <li>
+                        <a href="../dang-ky-lai-thu/index.html"
+                           title="Đăng ký lái thử">Đăng ký lái thử</a>
+                    </li>
+                    <li>
+                        <a href="../dai-ly/index.html"
+                           title="Hệ thống đại lý">Hệ thống đại lý</a>
+                    </li>
+                </ul>
+                <div class="language-box dropdown">
+                    <button id="language-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="true" class="btn language-text">
+                        VN
+                    </button>
+                    <ul aria-labelledby="language-dropdown" class="dropdown-menu">
+                        <li class="active">
+                            <a href="index.html" title="VN" class="language-text">VN</a>
+                        </li>
+                        <li>
+                            <a href="../en/trang-chu/index.html" title="EN" class="language-text">EN</a>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="social-box hidden-xs">
+                    <li>
+                        <a href="https://www.facebook.com/MitsubishiMotorsVietnam" title="Facebook"
+                           class="icon-social facebook"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/channel/UCoyBMbK2ObfPEZajk7HZ91g" title="Youtube"
+                           class="icon-social youtube"><i class="fa fa-youtube-play"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- End - Menu on top header: Top menu - Search - Language - Social-->
+        <!-- Main menu-->
+        <nav role="navigation" class="main-nav is-fixed">
+            <button class="btn nav-toggle">
+                <span class="line line-1"></span><span class="line line-2"></span><span class="line line-3"></span>
+            </button>
+            <div class="nav-container">
+                <ul class="nav-menu">
+                    <li class="menu-item has-dropdown menu-item-sp ">
+                        <a href=" javascript:void(0)" title="Sản phẩm" class="menu-link">
+                            Sản phẩm
+                        </a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-inner">
+                                <ul class="menu">
+                                    @await Component.InvokeAsync("HeaderCarComponent")
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="menu-item has-dropdown ">
+                        <a href="javascript:void(0)" title="Mua xe"
+                           class="menu-link">Mua xe</a>
+                        <div class="nav-dropdown">
+                            <ul class="nav-dropdown-menu">
+                                <li class="nav-dropdown-item">
+                                    <a href="../bang-gia/index.html" title="Bảng giá"
+                                       class="nav-dropdown-link">Bảng giá xe & Khuyến mãi</a>
+                                </li>
+                                <li class="nav-dropdown-item">
+                                    <a href="../dai-ly/index.html" title="Tìm đại lý"
+                                       class="nav-dropdown-link">Tìm đại lý</a>
+                                </li>
+                                <li class="nav-dropdown-item">
+                                    <a href="../dang-ky-lai-thu/index.html" title="Đăng ký lái thử"
+                                       class="nav-dropdown-link">Đăng ký lái thử</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="menu-item has-dropdown ">
+                        <a href="javascript:void(0)" title="Sở hữu xe"
+                           class="menu-link">Sở hữu xe</a>
+                        <div class="nav-dropdown">
+                            <ul class="nav-dropdown-menu">
+                                <li class="nav-dropdown-item">
+                                    <a href="../gioi-thieu-dich-vu/index.html"
+                                       title="Giới thiệu dịch vụ"
+                                       class="nav-dropdown-link">Giới thiệu dịch vụ</a>
+                                </li>
+                                <li class="nav-dropdown-item">
+                                    <a href="../danh-sach-dich-vu/index.html"
+                                       title="Đại lý dịch vụ"
+                                       class="nav-dropdown-link">Đại lý dịch vụ</a>
+                                </li>
+                                <li class="nav-dropdown-item">
+                                    <a href="../gioi-thieu-dich-vu/chinh-sach-bao-hanh/index.html"
+                                       title="Chính sách bảo hành"
+                                       class="nav-dropdown-link">Chính sách bảo hành</a>
+                                </li>
+                                <li class="nav-dropdown-item">
+                                    <a href="../gioi-thieu-dich-vu/bao-duong/index.html" title="Bảo dưỡng"
+                                       class="nav-dropdown-link">Bảo dưỡng</a>
+                                </li>
+                                <li class="nav-dropdown-item">
+                                    <a href="../gioi-thieu-dich-vu/phu-tung-chinh-hieu/index.html"
+                                       title="Phụ tùng chính hiệu"
+                                       class="nav-dropdown-link">Phụ tùng chính hiệu</a>
+                                </li>
+                                <li class="nav-dropdown-item">
+                                    <a href="../khao-sat-khach-hang/index.html" title="Khảo sát khách hàng"
+                                       class="nav-dropdown-link">Khảo sát khách hàng</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="menu-item has-dropdown ">
+                        <a href="javascript:void(0)" title="Khám phá"
+                           class="menu-link">Khám phá</a>
+                        <div class="nav-dropdown">
+                            <ul class="nav-dropdown-menu">
+                                <li class="nav-dropdown-item">
+                                    <a href="../tin-tuc/index.html" title="Tin tức"
+                                       class="nav-dropdown-link">Tin tức</a>
+                                </li>
+                                <li class="nav-dropdown-item">
+                                    <a href="../tin-tuc/blog-c29.html"
+                                       title="Blog"
+                                       class="nav-dropdown-link">Blog</a>
+                                </li>
+                                <li class="nav-dropdown-item">
+                                    <a href="../cong-nghe-mitsubishi/index.html"
+                                       title="Công nghệ Mitsubishi"
+                                       class="nav-dropdown-link">Công nghệ Mitsubishi</a>
+                                </li>
+                                <li class="nav-dropdown-item">
+                                    <a href="../drive-earth/index.html" title="Drive your ambition"
+                                       class="nav-dropdown-link">Drive your ambition</a>
+                                </li>
+                                <li class="nav-dropdown-item">
+                                    <a href="../xe-concept/index.html"
+                                       title="Xe concept"
+                                       class="nav-dropdown-link">Xe concept</a>
+                                </li>
+                                <li class="nav-dropdown-item">
+                                    <a href="../dynamic-shield/index.html"
+                                       title="Dynamic shield" class="nav-dropdown-link">
+                                        Dynamic
+                                        shield
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!--                <li class="menu-item">-->
+                    <!--                    <a onclick="window.open('http://ecodrive.mitsubishi-motors.com.vn/', '_blank', '');"-->
+                    <!--                       href="http://ecodrive.mitsubishi-motors.com.vn/" title="Eco-drive challenge" class="menu-link">Eco-drive-->
+                    <!--                        challenge</a>-->
+                    <!--                </li>-->
+                    <li class="menu-item has-dropdown ">
+                        <a href="javascript:void(0)" title="Mitsubishi Motors Việt Nam"
+                           class="menu-link">Mitsubishi Motors Việt Nam</a>
+                        <div class="nav-dropdown">
+                            <ul class="nav-dropdown-menu">
+                                <li class="nav-dropdown-item">
+                                    <a href="../gioi-thieu-cong-ty/index.html" title="Giới thiệu công ty"
+                                       class="nav-dropdown-link">Giới thiệu công ty</a>
+                                </li>
+                                <li class="nav-dropdown-item">
+                                    <a href="../tuyen-dung/index.html" title="Tuyển dụng"
+                                       class="nav-dropdown-link">Tuyển dụng</a>
+                                </li>
+                                <!--                            <li class="nav-dropdown-item">-->
+                                <!--                                <a href="--><!--"-->
+                                <!--                                   title="--><!--"-->
+                                <!--                                   class="nav-dropdown-link">--><!--</a>-->
+                                <!--                            </li>-->
+                                <li class="nav-dropdown-item">
+                                    <a href="../hoi-dap/index.html" title="Hỏi đáp"
+                                       class="nav-dropdown-link">Hỏi đáp</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <!-- mobie section-->
+                <ul class="visible-xs nav-list red">
+                    <li>
+                        <a href="../bang-gia/index.html"
+                           title="Bảng giá">Bảng giá</a>
+                    </li>
+                    <li>
+                        <a href="../dang-ky-lai-thu/index.html"
+                           title="Đăng ký lái thử">Đăng ký lái thử</a>
+                    </li>
+                    <li>
+                        <a href="../dai-ly/index.html"
+                           title="Hệ thống đại lý">Hệ thống đại lý</a>
+                    </li>
+                </ul>
+                <div class="social-top-header visible-xs">
+                    <h3 class="text visible-xs">Li&#234;n kết Mitsubishi Motors Việt Nam</h3>
+                    <ul class="social-box">
+                        <li>
+                            <a href="https://www.facebook.com/MitsubishiMotorsVietnam" title="Facebook"
+                               class="icon-social facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCoyBMbK2ObfPEZajk7HZ91g" title="Youtube"
+                               class="icon-social youtube" target="_blank"><i class="fa fa-youtube-play"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main id="main" class="main">
+        @RenderBody()
+    </main>
+    <footer id="footer" class="footer">
+        <div class="footer-top">
+            <div class="grid-inner">
+                <ul class="footer-top-list">
+                    <li>
+                        <a href="../bang-gia/index.html" title="Bảng giá xe" class="left-icon-link">
+                            <span class="icon">
+                                <i class="svg-icon svg-icon icon-price red red "></i>
+                            </span><span class="text">Bảng giá xe</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../tin-tuc/tin-khuyen-mai-c32.html"
+                           title="Khuyến mãi" class="left-icon-link">
+                            <span class="icon">
+                                <i class="svg-icon svg-icon icon-promotion red red "></i>
+                            </span><span class="text">Khuyến mãi</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../dang-ky-lai-thu/index.html" title="Đăng ký lái thử" class="left-icon-link">
+                            <span class="icon"><i class="svg-icon svg-icon icon-drive red red "></i></span><span class="text">Đăng ký lái thử</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../dai-ly/index.html" title="Hệ thống đại lý" class="left-icon-link">
+                            <span class="icon">
+                                <i class="svg-icon svg-icon icon-dealer red red "></i>
+                            </span><span class="text">Liên hệ</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="footer-top-contact">
+                    <div class="left-icon-link">
+                        <div class="icon"><i class="svg-icon icon-phone-small"></i></div>
+                        <div class="text"><span>Hotline (7:30 - 16:30)</span><strong>Hỗ trợ kỹ thuật:                            0903.999.141</strong><strong>Các vấn đề khác: 1800.1514</strong></div>
+                    </div>
+                </div>
+                <ul class="social-box hidden-xs">
+                    <li>
+                        <a href="https://www.facebook.com/MitsubishiMotorsVietnam" title="Facebook"
+                           class="icon-social facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/channel/UCoyBMbK2ObfPEZajk7HZ91g" title="Youtube"
+                           class="icon-social youtube" target="_blank"><i class="fa fa-youtube-play"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-middle hidden-xs">
+            <div class="grid-inner">
+                <div class="footer-middle-col ">
+                    <h3 class="bold-title">Sản phẩm</h3>
+                    <ul class="normal-list">
+                        @await Component.InvokeAsync("FooterCarComponent")
+                    </ul>
+                </div>
+                <div class="footer-middle-col ">
+                    <h3 class="bold-title">Mua xe</h3>
+                    <ul class="normal-list">
+                        <li><a href="../bang-gia/index.html" title="Bảng giá">Bảng giá</a></li>
+                        <li><a href="../dai-ly/index.html" title="Tìm đại lý">Tìm đại lý</a></li>
+                        <li><a href="../tin-tuc/tin-khuyen-mai-c32.html" title="Khuyến mãi">Khuyến mãi</a></li>
+                        <li><a href="../dang-ky-lai-thu/index.html" title="Đăng ký lái thử">Đăng ký lái thử</a></li>
+                        <li>
+                            <a href="../yeu-cau-bao-gia/index.html" title="Yêu cầu báo giá">Yêu cầu báo giá</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-middle-col ">
+                    <h3 class="bold-title">Sở hữu xe</h3>
+                    <ul class="normal-list">
+                        <li><a href="../gioi-thieu-dich-vu/index.html" title="Giới thiệu dịch vụ">Giới thiệu dịch vụ</a></li>
+                        <li><a href="../danh-sach-dich-vu/index.html" title="Đại lý dịch vụ">Đại lý dịch vụ</a></li>
+                        <li><a href="../gioi-thieu-dich-vu/chinh-sach-bao-hanh/index.html" title="Chính sách bảo hành">Chính sách bảo hành</a></li>
+                        <li><a href="../gioi-thieu-dich-vu/bao-duong/index.html" title="Bảo dưỡng">Bảo dưỡng</a></li>
+                        <li><a href="../gioi-thieu-dich-vu/phu-tung-chinh-hieu/index.html" title="Phụ tùng chính hiệu">Phụ tùng chính hiệu</a></li>
+                        <li><a href="#" title="Khảo sát khách hàng">Khảo sát khách hàng</a></li>
+                    </ul>
+                </div>
+                @*<div class="footer-middle-col ">
+                    <h3 class="bold-title">Khám phá</h3>
+                    <ul class="normal-list">
+                        <li><a href="../tin-tuc/index.html" title="Tin tức">Tin tức</a></li>
+                        <li><a href="http://ecodrive.mitsubishi-motors.com.vn/" target="_blank">Eco-drive challenge</a></li>
+                        <li><a href="../tin-tuc/blog-c29.html" title="Blog">Blog</a></li>
+                        <li>
+                            <a href="../cong-nghe-mitsubishi/index.html" title="Công nghệ Mitsubishi">Công nghệ Mitsubishi</a>
+                        </li>
+                        <li><a href="../drive-earth/index.html" title="Drive your ambition">Drive your ambition</a></li>
+                        <li><a href="../xe-concept/index.html" title="Xe concept">Xe concept</a></li>
+                        <li><a href="../dynamic-shield/index.html" title="Dynamic shield">Dynamic shield</a></li>
+                    </ul>
+                </div>*@
+                <div class="footer-middle-col last">
+                    <h3 class="bold-title">Mitsubishi Motors Việt Nam</h3>
+                    <ul class="normal-list">
+                        <li><a href="../gioi-thieu-cong-ty/index.html" title="Giới thiệu công ty">Giới thiệu công ty</a></li>
+                        <li><a href="../tuyen-dung/index.html" title="Tuyển dụng">Tuyển dụng</a></li>
+                        <li><a href="../dang-ky-dai-ly/index.html" title="Mời mở đại lý">Mời mở đại lý</a></li>
+                        <li><a href="../hoi-dap/index.html" title="Hỏi đáp">Hỏi đáp</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="inner">
+                <div class="copyright">&copy;@DateTime.Now.Year Bản quyền thuộc về Mitsubishi Motors Vietnam Co.,Ltd.</div>
+            </div>
+        </div>
+    </footer>
+    <ul class="float-menu-block">
+        <li>
+            <a href="../bang-gia/index.html" alt="Bảng giá" class="left-icon-item">
+                <span class="icon">
+                    <i class="svg-icon icon-price smoke"></i>
+                </span><span class="text">Bảng giá</span>
+            </a>
+        </li>
+        <li>
+            <a href="../tin-tuc/chuong-trinh-uu-dai-dac-biet-thang-32018-n9028.html"
+               alt="Khuyến mãi" class="left-icon-item">
+                <span class="icon"><i class="svg-icon icon-promotion smoke"></i></span><span class="text">Khuyến mãi</span>
+            </a>
+        </li>
+        <li>
+            <a href="../dang-ky-lai-thu/index.html" alt="" class="left-icon-item">
+                <span class="icon">
+                    <i class="svg-icon icon-drive smoke"></i>
+                </span><span class="text">Đăng ký lái thử</span>
+            </a>
+        </li>
+    </ul>
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @if (string.IsNullOrEmpty(seoKeywords.StructuredData))
+    {
+        <script type="application/ld+json">
+            {
+            "@@context": "http://schema.org",
+            "@@type": "LocalBusiness",
+            "address": {
+            "@@type": "PostalAddress",
+            "addressLocality": "Carrollton",
+            "addressRegion": "Texas",
+            "postalCode":"75010",
+            "streetAddress": "3032 E. Hebron Parkway Suite 102"
+            },
+            "description": "@(seoKeywords.Description ?? "Mitsubishi Đà Nẵng")",
+            "name": "@(seoKeywords.Author ?? "Mitsubishi Đà Nẵng")",
+            "telephone": "(972) 389-2179",
+            "image": "@(seoKeywords?.SharedImageUrl ?? "https://s3-ap-southeast-1.amazonaws.com/dfwresource/home/img/home_e621e11d-b91d-47b1-893f-2e84bc0822f9.png")",
+            "geo": {
+            "@@type": "GeoCoordinates",
+            "latitude": "33.025512",
+            "longitude": "-96.8561117"
+            },
+            "sameAs" : [ "https://www.facebook.com/Victor-Vo-REMAX-DFW-207501595990526"],
+            "priceRange":"10000 - 5000000"
+            }
+        </script>
+    }
+    else
+    {
+
+        <script type="application/ld+json">
+            @Html.Raw(string.Format(seoKeywords.StructuredData,
+                                         seoKeywords.Description ?? "Mitsubishi Đà Nẵng",
+                                         seoKeywords.Author ?? "Mitsubishi Đà Nẵng",
+                                         seoKeywords?.SharedImageUrl ?? "https://s3-ap-southeast-1.amazonaws.com/dfwresource/home/img/home_e621e11d-b91d-47b1-893f-2e84bc0822f9.png"
+                                         ))
+        </script>
+
+    }
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.slick-single-item').slick({
+                dots: true,
+                lazyLoad: true,
+                infinite: true,
+                speed: 500,
+                autoplay: true,
+                autoplayTimeout: 4000,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                responsive: [
+                    {
+                        breakpoint: 767,
+                        settings: {
+                            dots: false
+                        }
+                    }
+                ]
+            });
+
+            $('.slide-center').slick({
+                slidesToShow: 4,
+                arrows: false,
+                speed: 500,
+                autoplay: true,
+                responsive: [
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+
+    <!-- Javascripts -->
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery-ui.min.js"></script>
+    <script src="~/js/picturefill.js"></script>
+    <script src="~/js/threesixty.min.js"></script>
+    <script src="~/js/jquery.fancybox.js"></script>
+    <script src="~/js/custom.js"></script>
+    <script src="~/js/slick.js"></script>
+    <script src="~/js/enscroll.min.js"></script>
+    <script src="~/js/jquery.mCustomScrollbar.min.js"></script>
+    <script src="~/js/greensock-js/TweenMax.min.js"></script>
+    <script src="~/js/greensock-js/plugins/ScrollToPlugin.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
